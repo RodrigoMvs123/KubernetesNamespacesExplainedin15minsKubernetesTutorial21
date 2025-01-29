@@ -102,7 +102,7 @@ kubectl get namespace
 
 Create a namespace with a configuration file 
 
-NamespaceWithConfigurationFile
+NamespaceWithConfigurationFile.yaml
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -113,7 +113,104 @@ data:
   db_url: mysql-service.database 
 ```
 
+Use Cases when to use Namespaces 
 
+1. **Structure** your components
 
+2. **Avoid conflicts** between teams
 
+3. **Share services** between different environments 
+
+4. **Access and Resource Limits** on Namespaces level 
+
+**Why** to use Namespaces ?
+
+- Everything in one Namespace // No Overview 
+
+```
+Kubernetes Cluster
+
+default
+
+  deployments
+              replicas 
+                       services
+                                configmaps                  
+```
+
+Resources **grouped** in Namespaces 
+
+```
+Kubernetes Cluster
+
+Database     Monitoring      Elastic Stack      Nginx-Ingress 
+```
+
+Override the first team deployment
+ 
+```
+Kubernetes Cluster
+
+default 
+                  
+           my-app deployment           my-app deployment 
+                             config 1                    config 2
+```
+
+- Solution 
+
+```
+Kubernetes Cluster
+
+default 
+           Project A                   Project B   
+           Namespace                   Namespace
+           my-app deployment           my-app deployment 
+                             config 1                    config 2
+```
+
+Resource Sharing: Staging and Development 
+
+> Re-use those components in both environments 
+
+```
+Kubernetes Cluster
+
+Staging 
+          Development 
+                        Nginx-Ingress Controller 
+                                                   Elastic Stack
+```
+
+Resource Sharing: Blue-Green Deployment
+
+> The versions of Application differ 
+
+```
+Kubernetes Cluster
+
+Production Blue        Production Green
+
+Nginx-Ingress Controller 
+                           Elastic Stack
+```
+
+Access and Resources Limits on Namespaces 
+
+> Each team has own, isolated environment
+
+> Limit: CPU, RAM, Storage per Namespace 
+
+```
+Kubernetes Cluster
+
+default 
+           Project A                            Project B   
+           Namespace                            Namespace
+           my-app deployment                    my-app deployment 
+                             config 1                             config 2
+                             Resource Quota A                     Resource Quota B 
+```
+
+Characteristics of **Namespaces**
 
