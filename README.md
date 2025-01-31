@@ -65,6 +65,8 @@ kubernetes-dashboard only with minikube
 
 > A config map that contains cluster information
 
+Command Prompt ( Terminal )
+
 ```
 kubectl cluster-info
 > Kubernetes master is running at https://192.168.64.5:8443
