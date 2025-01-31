@@ -86,6 +86,8 @@ kubectl cluster-info
 
 ## Create Namespace 
 
+Command Prompt ( Terminal )
+
 ```
 kubectl create namespace my-namespace 
 > namespace/my-namespace created
@@ -273,11 +275,9 @@ Kubernetes Cluster
 
 - List components that are not bound to a Namespace 
 
-```bash
+Command Prompt ( Terminal )
 
-CLI Commands 
-
-```bash
+```
 kubectl api-resources --namespaced=false
 kubectl api-resources --namespaced=true
 ```
@@ -297,6 +297,8 @@ metadata:
 data:
   db_url: mysql-service.database 
 ```
+
+Command Prompt ( Terminal )
 
 ```
 kubectl apply -f myconfigmap.yaml
@@ -345,6 +347,8 @@ data:
 
 Get the component in the specified Namespace
 
+Command Prompt ( Terminal )
+
 ```
 kubectl get configmap -n my-namespace
 > NAME             DATA   AGE
@@ -356,6 +360,9 @@ Change **Active Namespace**
 > Change the active Namespace with kubens 
 
 On Macbook 
+
+Command Prompt ( Terminal )
+
 ```
 brew install kubectx
 
